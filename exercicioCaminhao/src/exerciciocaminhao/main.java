@@ -1,68 +1,38 @@
 package exerciciocaminhao;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class main {
-    
-    public static void menu(){
-        System.out.println("========= Programa de Veiculos =========");
-        System.out.println("1 - Cadastrar Novo Veículo");
-        System.out.println("2 - Imprimir Relatório de Veículos");
-        System.out.println("3 - Sair");
-        System.out.println("========================================");
-    }
-    public static void menuCadastro(){
-        System.out.println("========= Escolha o tipo de Veículo =========");
-        System.out.println("1 - Automovel");
-        System.out.println("2 - Caminhao");
-        System.out.println("3 - Motocicleta");
-        System.out.println("4 - Sair");
-        System.out.println("========================================");
-    }
-
     public static void main(String[] args) {
         int menuOpcoes, opCadastro;
-        float motor;
-        int numRodas;
+        int motor, numRodas;
         String modelo, carga, marca;
-        Scanner read = new Scanner(System.in);
         RepositorioVeiculos autos = new RepositorioVeiculos();
         
         do{
-            menu();
-            menuOpcoes = read.nextInt();
+            menuOpcoes = Integer.parseInt(JOptionPane.showInputDialog(null, "1 - Cadastrar Novo Veículo\n2 - Imprimir Relatório de Veículos\n3 - Sair"));
             
             switch(menuOpcoes){
                 case 1: 
-                    menuCadastro();
-                    opCadastro = read.nextInt();
+                    opCadastro = Integer.parseInt(JOptionPane.showInputDialog("======== Tipo de Veículo ========\n1 - Automovel\n2 - Caminhao\n3 - Motocicleta\n4 - Sair"));
                     switch(opCadastro){
                         case 1:
-                            System.out.println("Digite a Potencia do Motor(CV): ");
-                            motor = read.nextFloat();
-                            System.out.println("Digite o Numero de Rodas: ");
-                            numRodas = read.nextInt();
-                            System.out.println("Digite o Modelo do Veículo: ");
-                            modelo = read.next();
+                            motor = Integer.parseInt(JOptionPane.showInputDialog("Digite a Potencia do Motor(CV):"));
+                            numRodas = Integer.parseInt(JOptionPane.showInputDialog("Digite o Numero de Rodas:"));
+                            modelo = JOptionPane.showInputDialog("Digite o Modelo do Veiculo:");
                             Automovel auto1 = new Automovel(motor, numRodas, modelo);
                             autos.inserir(auto1);                            
                             break;
                         case 2:
-                            System.out.println("Digite a Potencia do Motor(CV): ");
-                            motor = read.nextFloat();
-                            System.out.println("Digite o Numero de Rodas: ");
-                            numRodas = read.nextInt();
-                            System.out.println("Digite o tipo de Carga: ");
-                            carga = read.next();
+                            motor = Integer.parseInt(JOptionPane.showInputDialog("Digite a Potencia do Motor(CV):"));
+                            numRodas = Integer.parseInt(JOptionPane.showInputDialog("Digite o Numero de Rodas:"));
+                            carga = JOptionPane.showInputDialog("Digite o Tipo de Carga:");
                             Caminhao auto2 = new Caminhao (motor, numRodas, carga);
                             autos.inserir(auto2);                            
                             break;
                         case 3:
-                            System.out.println("Digite a Potencia do Motor(CC): ");
-                            motor = read.nextFloat();
-                            System.out.println("Digite o Numero de Rodas: ");
-                            numRodas = read.nextInt();
-                            System.out.println("Digite a Marca: ");
-                            marca = read.next();
+                            motor = Integer.parseInt(JOptionPane.showInputDialog("Digite a Potencia do Motor(CC):"));
+                            numRodas = Integer.parseInt(JOptionPane.showInputDialog("Digite o Numero de Rodas:"));
+                            marca = JOptionPane.showInputDialog("Digite a Marca:");
                             Motocicleta auto3 = new Motocicleta (motor, numRodas, marca);
                             autos.inserir(auto3);                            
                             break;
@@ -71,9 +41,7 @@ public class main {
                     }
                     break;
                 case 2: 
-                    System.out.println("============== RELATÓRIO ===============");
-                    autos.listaVeiculos();
-                    System.out.println("========================================");
+                    autos.listar();
             }
         }while(menuOpcoes!=3);        
     }    

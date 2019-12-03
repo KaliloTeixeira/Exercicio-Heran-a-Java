@@ -1,14 +1,16 @@
 package exerciciocaminhao;
 
+import javax.swing.JOptionPane;
+
 public class RepositorioVeiculos {
     private Veiculo[] estoque;
     private String classe;
     private int indice;
-    private static final int max = 10;
+    private static final int MAX = 10;
     
     public RepositorioVeiculos(){
         indice = 0;
-        estoque = new Veiculo[max];
+        estoque = new Veiculo[MAX];
     }
     
     public void inserir(Veiculo auto){
@@ -16,9 +18,9 @@ public class RepositorioVeiculos {
         indice++;
     }
     
-    public void listaVeiculos (){
+    public void listar (){
         for (int i = 0; i < indice; i++) {
-            classe = estoque[i].getClass().toString();
+        classe = estoque[i].getClass().toString();
             switch(classe){
                 case "class exerciciocaminhao.Automovel":
                     classe = "Automóvel";
@@ -29,12 +31,8 @@ public class RepositorioVeiculos {
                 default:
                     classe = "Motocicleta";
                     break;
-            }             
-            
-            System.out.println("========================================");
-            System.out.println("Tipo de Veículo: " + classe);
-            System.out.println("Potência: " + estoque[i].motor);
-            System.out.println("Numero de Rodas: " + estoque[i].numRodas);
+            }
+            JOptionPane.showMessageDialog(null,"Veiculo: " + (i+1) + "\nTipo de Veículo: " + classe + "\nPotência: " + estoque[i].motor + "\nNumero de Rodas: " + estoque[i].numRodas);
         }
     }
 }
